@@ -6,7 +6,7 @@ class Color:
         self.g = max(min(1,g),0)
         self.b = max(min(1,b),0)
     
-    def __(self, other):
+    def __sum__(self, other):
         return Color(self.r + other.r, self.g + other.g, self.b + other.b)
     
     def __str__(self):

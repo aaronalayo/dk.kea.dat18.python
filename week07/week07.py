@@ -11,8 +11,8 @@ a = A()
 # a.b = 32
 # print(a.b)
 
-a.message('Hello')
-print(a.msg)
+# a.message('Hello')
+# print(a.msg)
 
 class A:
     def __init__(self):

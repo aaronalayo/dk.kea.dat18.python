@@ -47,6 +47,12 @@ class FrenchDeck:
     def __getitem__(self, position):
         return self._cards[position]
 
-if __name__ == '__main__':
-    import doctest
-    doctest.testmod(verbose=True, optionflags=doctest.ELLIPSIS)
+
+# Card(rank='7', suit='diamons')
+deck = FrenchDeck()
+print(len(deck))
+
+
+# if __name__ == '__main__':
+#     import doctest
+#     doctest.testmod(verbose=True, optionflags=doctest.ELLIPSIS)
