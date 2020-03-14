@@ -1,97 +1,91 @@
 class CellularAutomaton:
-    def __init__(self, rule, init_state = []):
+    def __init__(self, rule, size):
         self.rule = rule
-        self.init_state = init_state
-        self.generate()     
+        self.size = size
+        self.generate()
         
  
-
-
     def generate(self):
         
-        a = len(self.init_state)
-        
-        self.display(self.init_state)
+        init_state = '0'*self.size + '1' + '0' * self.size
+        current_state = list(init_state)
+        a = len(current_state)
 
         step = 0
-        while(step < 50):
-            result = []
-            for i in range(0,a):
-                
-                if i > 0 and i < a-1:
-                    left = self.init_state[i-1]
-                    center = self.init_state[i]
-                    right = self.init_state[i+1]
-                    
-                    result.append(int(self.rules(center,left,right)))
-                    
-                # left-most cell : check the second cell
-                elif(i == 0):
-                    if self.init_state[1] == 1:
-                        result.append(1)
-                    else:
-                        result.append(0)
+        
 
-                # right-most cell : check the second to the last cell
-                elif(i == a-1):
-                    if self.init_state[a-2] == 1:
-                        result.append(1)
-                    else:
-                        result.append(0)
-           
-            # prints new state of the cells
-            self.display(result)
+        
+        while step < self.size:
 
+            self.display(current_state)
+            new_state = [None]*a
             
-            self.init_state = result
+            for i in range(0,a-1):
+                 if(i == 0):
+                    new_rule = current_state[i-1], current_state[i], current_state[i+1]
+                 if(i == a-2):
+                    new_rule = current_state[i], current_state[i+1], current_state[0]
+                    new_state[i+1] = self.rules(new_rule)
+                    
+                    left = current_state[i-1]
+                    center = current_state[i]
+                    right = current_state[i+1]
+                    
+                    
+                    new_rule = left, center, right
+                    new_state[i] = self.rules(new_rule)
+
+            current_state = new_state
             
-            step+= 1
+            step = step + 1
                 
         
    
-    def display(self,gen):
-        self.gen = gen
-        cells = {0:'-', 1:'*'}
+ 
+    def display(self, state):
+        for cell in state:
+            if cell == '1':
+                print('*', end="", flush=True)
+            else:
+                print('-', end="", flush=True)
+        print('')  
 
-        print(''.join( [cells[e] for e in gen]))
 
-
-
-    def rules(self,a,b,c):
-        rule_in_binary =  "{0:08b}".format(self.rule)
-        
-        if a == 1 & b == 1 & c == 1:  
-            return rule_in_binary[0]  
-        if a == 1 & b == 1 & c == 0:
-            return rule_in_binary[1]
-        if a == 1 & b == 0 & c == 1:
-            return rule_in_binary[2]
-        if a == 1 & b == 0 & c == 0:
-            return rule_in_binary[3]
-        if a == 0 & b == 1 & c == 1:
-            return rule_in_binary[4]
-        if a == 0 & b == 1 & c == 0:
-            return rule_in_binary[5]
-        if a == 0 & b == 0 & c == 1:
-            return rule_in_binary[6]
-        if a == 0 & b == 0 & c == 0:
-            return rule_in_binary[7]
-        else: 
-            return 0
-        
+    
+    def rules(self, combination):
+         rule_in_binary =  "{0:08b}".format(self.rule)
+         #print(rule_in_binary)
+         if (combination == ('1', '1', '1')):
+             return str(rule_in_binary[0])
+         if (combination == ('1', '1', '0')):
+             return str(rule_in_binary[1])
+         if (combination == ('1', '0', '1')):
+             return str(rule_in_binary[2])
+         if (combination == ('1', '0', '0')):
+             return str(rule_in_binary[3])
+         if (combination == ('0', '1', '1')):
+             return str(rule_in_binary[4])
+         if (combination == ('0', '1', '0')):
+             return str(rule_in_binary[5])
+         if (combination == ('0', '0', '1')):
+             return str(rule_in_binary[6])
+         if (combination == ('0', '0', '0')):
+             return str(rule_in_binary[7])
+  
             
-            
-          
+     
+
         
 
 if __name__ == "__main__":
-    r = 200
-    
-    s = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-    ca = CellularAutomaton(r,s)
+    rule = 30
+    size = 21
+    # s = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    # s = [0,0,1,0,0]
+    ca = CellularAutomaton(rule,size)
     ca
 
-
+ 
     
 
 
