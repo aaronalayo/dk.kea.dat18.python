@@ -46,6 +46,9 @@ class CellularAutomation:
     --*---------------*--
     -*-*-------------*-*-
 
+
+    https://github.com/aaronalayo/dk.kea.dat18.python/blob/master/mandatory_assig/cellularautomation.py
+
     """
     def __init__ (self, rule, size):   
         self.rule = rule
