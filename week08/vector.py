@@ -22,10 +22,20 @@ class Vector:
     >>> True if Vector(1, 0) else False
     True
     """
-
+    typecode = 'd'
+    
     def __init__(self, x=0, y=0):
-        self.x = x
-        self.y = y
+        self.__x = float(x)
+        self.__y = float(y)
+
+ 
+    @property
+    def x(self):
+        return self.__x
+
+    @property
+    def y(self):
+        return self.__y
 
     def __repr__(self):
         return f"Vector({self.x}, {self.y})"
@@ -45,14 +55,14 @@ v1 = Vector(2, 4)
 v2 = Vector(2, 1)
 
 v = Vector(3, 4)
-print(abs(v))
+print(v.x, v2.y)
 
 
 
-v*3
-print( abs(v * 3))
+# v*3
+# print( abs(v * 3))
 
-print(bool(v2))
+# print(bool(v2))
 
 # if __name__ == '__main__':
 #     import doctest

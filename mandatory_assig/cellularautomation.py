@@ -112,4 +112,4 @@ class CellularAutomation:
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
-  
+c = CellularAutomation(110, 20)

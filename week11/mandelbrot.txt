@@ -1,0 +1,17 @@
+coordinates(x,y)
+
+complex numbers (x+yj)
+
+
+point C belongs set of complex 
+
+Z belongs to set of complex
+
+
+screen width, height
+
+
+processing3 : X' = map(x, o, width, Xmin, Xmax)
+
+X' = Xmin+(Xmax - Xmin)* x-0/width - 0
+
